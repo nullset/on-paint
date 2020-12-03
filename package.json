@@ -3,9 +3,13 @@
   "author": {
     "name": "Nathan Wright"
   },
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A small library to run any number of actions on every animation frame, meaning these actions will run as fast as your web browser is capable of running them.",
-  "keywords": ["requestAnimationFrame", "onpaint", "on-paint"],
+  "keywords": [
+    "requestAnimationFrame",
+    "onpaint",
+    "on-paint"
+  ],
   "browser": "index.js",
   "scripts": {
     "start": "snowpack dev",
