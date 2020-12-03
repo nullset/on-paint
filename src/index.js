@@ -41,7 +41,7 @@ const onPaint = (window.onPaint = {
   },
 
   // User settings.
-  logPerformance: true,
+  logPerformance: false,
 
   // Set a function to execute on every frame.
   set: function (fn, isPaused = false) {
