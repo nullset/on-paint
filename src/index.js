@@ -21,7 +21,7 @@ function logTime(pair) {
   console.timeEnd(pair[0].description);
 }
 
-const onPaint = (window.onPaint = {
+export default {
   // Private variables/functions.
   [registry]: new Map(),
   [paused]: new Map(),
@@ -107,4 +107,4 @@ const onPaint = (window.onPaint = {
       targetElem.style.cssText = `top: ${top}px; left: ${left}px; width: ${width}px; height: ${height}px`;
     },
   },
-});
+};
