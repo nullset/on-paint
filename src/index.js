@@ -63,26 +63,6 @@ const onPaint = (window.onPaint = {
     this[registry].delete(sym);
   },
 
-  // Clear all functions from the queue.
-  clear: function () {
-    this.stop();
-    this[paused].clear();
-    this[registry].clear();
-  },
-
-  // Execute all functions in the queue.
-  run: function () {
-    if (!this[running]) {
-      this[running] = true;
-      this[loop]();
-    }
-  },
-
-  // Pause all execution of functions.
-  stop: function () {
-    this[running] = false;
-  },
-
   // Pause the execution of a particular function.
   pause: function (sym) {
     const fn = this[registry].get(sym);
@@ -98,6 +78,26 @@ const onPaint = (window.onPaint = {
     this[registry].set(sym, fn);
     this[paused].delete(sym);
     this.run();
+  },
+
+  // Execute all functions in the queue.
+  run: function () {
+    if (!this[running]) {
+      this[running] = true;
+      this[loop]();
+    }
+  },
+
+  // Pause all execution of functions.
+  stop: function () {
+    this[running] = false;
+  },
+
+  // Clear all functions from the queue.
+  clear: function () {
+    this.stop();
+    this[paused].clear();
+    this[registry].clear();
   },
 
   // Common functions.

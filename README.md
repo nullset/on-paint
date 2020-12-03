@@ -1,24 +1,114 @@
-# New Project
+# On-Paint
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+A small library to run any number of actions on every animation frame, meaning these actions will run as fast as your web browser is capable of running them.
 
-## Available Scripts
+## Installation
 
-### npm start
+```
+npm install on-paint
+```
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+or
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+```
+yarn add on-paint
+```
 
-### npm run build
+or
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+```
+pnpm add on-paint
+```
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/master/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.json` config file.
+## Usage
 
-### Q: What about Eject?
+See [an example](https://foobar) for details.
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+An example action called `tether` is included in the library to give you an idea what's possible. All included example actions can be viewed by inspecting `onPaint.fns`.
+
+The `tether` action can be used to keep  
+
+Why include example code in the library? It's the only example I could think of where using this library is the best way to accomplish shomething, so it's entirely possible that it'll be the only function you ever need or use.
+
+```
+import onPaint from 'onpaint';
+
+const originalElement = document.getElementById('original');
+
+const placeholderElement = document.getElementById('placeholder');
+
+// Use "tether" function 
+onPaint.set(onPaint.fns.tether)
+```
+
+## API
+
+### `set(action, paused)`
+
+Sets an action to be run. An action must be a function.
+
+If `paused` is set to true, then the action will not immediately be run, otherwise an action will be run as soon as it is set, and will continue to run until otherwise specified.
+
+Calling `set(action, paused)` will return a unique identifier that can be used to selectively pause/resume/delete this particular action.
+
+### `delete(actionID)`
+
+Deletes an action from the queue. When called, it must be passed the unique identier that is returned from the `set` action above.
+
+Automatically pauses the execution of `onPaint` if there are no longer any active actions.
+
+### `pause(actionID)`
+
+Pauses an action, as specified by the unique identifier that is returned from the `set` action above.
+
+Automatically pauses the execution of `onPaint` if there are no longer any active actions.
+
+### `resume(actionID)`
+
+Resumes an action, as specified by the unique identifier that is returned from the `set` action above.
+
+### `run()`
+
+Runs all the actions.
+
+### `stop()`
+
+Stops all the actions from executing, and pauses the execution of `onPaint`.
+
+### `clear()`
+
+Clears all the actions from memory. Automatically pauses the executionof `onPaint`.
+
+### `fns`
+
+Returns a object of all the example actions included with the onPaint library.
+
+### `logPerformance`
+
+When set to true, onPaint will log the performance characteristics of every action as it is run and give an average of how long each action takes to perform. 
+
+ 
+## Performance
+
+Wait, so we're running these actions _every single frame?_ Isn't that terrible for overall browser performance?
+
+**PROBABLY.**
+
+If your actions take too long to run, it's entirely possible that you'll encounter negative effects.
+
+These negative effects can range from:
+  * _Trivial:_  Dropping some frames, leading to jank
+  * _Serious:_ Tying up the main thread, causing lag between user input and effect
+  * _Catastrophic:_ Freezing your browser
+
+**_In other words, use this library at your own risk._**
+
+Ideally you should write performant enough actions that _all_ of them are capable of being run in less than 1/60th of a second (or approximately 16ms).
+
+You should also ensure that you either `pause` or `delete` every action that you are not actively using so as to avoid any unnecessary performance hits.
+
+
+## If using this library can hurt performance, why make it at all?
+
+Because sometimes ... *very, very rarely* ... it's actually the best way to accomplish something.
+
