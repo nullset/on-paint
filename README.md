@@ -1,6 +1,6 @@
-# On-Paint
+# on-paint
 
-A small library to run any number of actions on every animation frame, meaning these actions will run as fast as your web browser is capable of running them.
+A [tiny library](https://bundlephobia.com/result?p=on-paint) (approximately 684 bytes) to run any number of actions on every animation frame, meaning these actions will run as fast as your web browser is capable of running them.
 
 ## Installation
 
@@ -22,11 +22,11 @@ pnpm add on-paint
 
 ## Usage
 
-See [an example](https://foobar) for details.
+See [an example](https://stackblitz.com/edit/on-paint-example?file=index.html) for details.
 
 An example action called `tether` is included in the library to give you an idea what's possible. All included example actions can be viewed by inspecting `onPaint.fns`.
 
-The `tether` action can be used to keep  
+The `tether` action can be used to keep an element pinned to the same position as a different reference element.
 
 Why include example code in the library? It's the only example I could think of where using this library is the best way to accomplish shomething, so it's entirely possible that it'll be the only function you ever need or use.
 
@@ -111,4 +111,6 @@ You should also ensure that you either `pause` or `delete` every action that you
 ## If using this library can hurt performance, why make it at all?
 
 Because sometimes ... *very, very rarely* ... it's actually the best way to accomplish something.
+
+See [an example](https://stackblitz.com/edit/on-paint-example?file=index.html) for details.
 
