@@ -4,6 +4,7 @@
     "name": "Nathan Wright"
   },
   "version": "0.5.2",
+  "homepage": "https://github.com/nullset/on-paint",
   "description": "A small library to run any number of actions on every animation frame, meaning these actions will run as fast as your web browser is capable of running them.",
   "keywords": [
     "requestAnimationFrame",
