@@ -104,7 +104,7 @@ export default {
   fns: {
     tether: (anchorElem, targetElem) => () => {
       const { top, left, width, height } = anchorElem.getBoundingClientRect();
-      targetElem.style.cssText = `top: ${top}px; left: ${left}px; width: ${width}px; height: ${height}px`;
+      targetElem.style.cssText += `; top: ${top}px; left: ${left}px; width: ${width}px; height: ${height}px`;
     },
   },
 };
